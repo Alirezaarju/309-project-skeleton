@@ -17,6 +17,25 @@ module.exports.list = function(req, res) {
     }
   });
 };
+module.exports.listView= function(req, res){
+    Article.find(function(err, data) {
+    if (err) {
+      return res.status(400).send({
+
+  				message: errorHandler.getErrorMessage(err)
+  			});
+    } else {
+      console.log("api called");
+      
+  res.render('./../public/views/article/all.ejs',{
+    user: req.user || null,
+    request: req,
+    articles: data
+
+  });
+    }
+});
+  
 
 module.exports.create = function(req, res) {
   var article = new Article(req.body);
