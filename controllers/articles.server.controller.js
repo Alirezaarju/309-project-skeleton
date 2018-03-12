@@ -14,6 +14,7 @@ module.exports.list = function(req, res) {
       console.log("api called");
 
       res.status(200).send(data);
+      
     }
   });
 };
@@ -36,6 +37,16 @@ module.exports.listView= function(req, res){
     }
 });
   
+};
+
+  module.exports.SingleView = function(req, res){
+      res.render('./../public/views/article/view.ejs',{
+    user: req.user || null,
+    request: req
+
+
+  });
+  };
 
 module.exports.create = function(req, res) {
   var article = new Article(req.body);
@@ -91,3 +102,4 @@ exports.articleByID = function(req, res, next, id) {
 		next();
 	});
 };
+
